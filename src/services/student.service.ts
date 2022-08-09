@@ -1,4 +1,4 @@
-import { Student } from "../models/student.model";
+import { Student } from "../models";
 import { omitBy, isNil } from 'lodash';
 import { Op } from "sequelize";
 

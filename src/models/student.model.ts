@@ -24,18 +24,18 @@ const Student = sequelize.define('student', {
     type: DataTypes.ENUM(...GENDERS),
     allowNull: false,
   },
-  has_latin_courses: {
+  hasLatinCourses: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
   },
-  has_maths_courses: {
+  hasMathsCourses: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
   },
-  has_economics_courses: {
+  hasEconomicsCourses: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
   },
-}, { underscored: true, timestamps: false });
+}, { tableName: 'student', underscored: true });
 
 export { GENDERS, Student };

@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
 import Joi from 'joi';
 import { getAllStudents } from '../services/student.service';
-import { GENDERS } from '../models/student.model';
+import { GENDERS } from '../models';
 
 const getAll = async (req: Request, res: Response) => {
   const querySchema = Joi.object({
