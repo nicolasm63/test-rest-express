@@ -19,7 +19,7 @@ const getAll = async (req: Request, res: Response) => {
 
   if (error) {
     res.status(400);
-    res.json({ error: 'Validation error', message: error.message });
+    res.json({ error: 'Query validation error', message: error.message });
   } else {
     // @TODO: consider adding generic try/catch block
     const students = await getAllStudents(validatedQuery);

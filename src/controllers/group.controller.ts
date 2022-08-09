@@ -1,6 +1,6 @@
 import type { Request, Response } from "express";
 import Joi from 'joi';
-import { createGroup, updateGroup } from '../services/group.service';
+import { createGroup, deleteGroup, updateGroup } from '../services/group.service';
 
 const create = async (req: Request, res: Response) => {
   const bodySchema = Joi.object({
@@ -15,10 +15,11 @@ const create = async (req: Request, res: Response) => {
 
   if (error) {
     res.status(400);
-    res.json({ error: 'Validation error', message: error.message });
+    res.json({ error: 'Body validation error', message: error.message });
   } else {
     // @TODO: consider adding generic try/catch block
     const group = await createGroup(validatedBody);
+    res.status(201);
     res.json(group);
   }
 };
@@ -49,4 +50,25 @@ const update = async (req: Request, res: Response) => {
   }
 };
 
-export default { create, update };
+// @TODO: generalize validation
+const destroy = async (req: Request, res: Response) => {
+  const paramsSchema = Joi.object({
+    groupId: Joi.number().required(),
+  });
+  const { params } = req;
+
+  const { error, value: validatedParams } = paramsSchema.validate(params);
+
+  if (error) {
+    res.status(400);
+    res.json({ error: 'Params validation error', message: error.message });
+  } else {
+    // @TODO: consider adding generic try/catch block
+    const { groupId } = validatedParams;
+    await deleteGroup(groupId);
+
+    res.json({ status: 'OK' });
+  }
+}
+
+export default { create, destroy, update };

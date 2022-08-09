@@ -35,4 +35,10 @@ const updateGroup = async (groupId, { studentIds }) => {
   return getGroup(groupId);
 };
 
-export { createGroup, updateGroup };
+const deleteGroup = async (groupId) => {
+  const group = await Group.findByPk(groupId);
+
+  await group.destroy();
+};
+
+export { createGroup, deleteGroup, updateGroup };

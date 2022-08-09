@@ -7,6 +7,7 @@ router.route('/')
   .post(controller.create);
 
 router.route('/:groupId')
-  .put(controller.update);
+  .put(controller.update)
+  .delete(controller.destroy);
 
 export default router;
