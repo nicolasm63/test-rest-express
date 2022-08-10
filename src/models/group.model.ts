@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../db/db"; // @TODO: find a cleaner way to do this, or at least rename it
+import sequelize from "../lib/sequelize";
 
 const Group = sequelize.define('group', {
   name: {

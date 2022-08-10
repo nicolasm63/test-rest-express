@@ -1,5 +1,5 @@
 import { DataTypes } from "sequelize";
-import sequelize from "../db/db";
+import sequelize from "../lib/sequelize";
 
 const GENDERS = ['male', 'female'];
 
