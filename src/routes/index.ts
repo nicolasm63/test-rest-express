@@ -5,9 +5,7 @@ import studentRoutes from "./student.route";
 
 const router = express.Router();
 
-/**
- * GET status
- */
+// Health check
 router.get('/status', (req: Request, res: Response) => res.send('OK'));
 
 router.use('/groups', groupRoutes);

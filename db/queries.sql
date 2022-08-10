@@ -1,3 +1,4 @@
+-- Returns the proportion of students that are in N groups
 SELECT
 	groupSize,
 	CAST(COUNT(id) AS FLOAT)/(SELECT COUNT(id) FROM student)*100 AS studentsPercentage
@@ -10,4 +11,7 @@ FROM (
 GROUP BY groupSize
 ORDER BY groupSize ASC;
 
-SELECT * FROM "group" WHERE creation_date > (NOW() - INTERVAL '1 year');
+-- Returns the groups created less than a year ago
+SELECT *
+FROM "group"
+WHERE creation_date > (NOW() - INTERVAL '1 year');

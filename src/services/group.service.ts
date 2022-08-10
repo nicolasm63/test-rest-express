@@ -1,5 +1,5 @@
-import { Group, Student, StudentGroup } from "../models";
 import { difference, reduce } from 'lodash';
+import { Group, Student, StudentGroup } from "../models";
 
 const getGroup = async (groupId: number) => {
   return Group.findByPk(groupId, {
@@ -9,6 +9,7 @@ const getGroup = async (groupId: number) => {
 
 // @TODO: use transactions to ensure to not edit the db on error
 const createGroup = async ({ name, creationDate, isActive, studentIds }) => {
+  // @TODO: improve usage of models to avoid weird casting
   const group = await Group.create({ name, creationDate, isActive }, { attributes: ['id'], raw: true }) as unknown as { id: number };
 
   const studentGroupsToCreate = studentIds.map((studentId) => ({ studentId, groupId: group.id }));

@@ -1,6 +1,6 @@
-import { Student } from "../models";
 import { omitBy, isNil } from 'lodash';
 import { Op } from "sequelize";
+import { Student } from "../models";
 
 const getAllStudents = async (
   { gender, bornBefore, bornAfter, hasLatinCourses, hasMathsCourses, hasEconomicsCourses, search },
@@ -35,7 +35,7 @@ const getAllStudents = async (
     };
   }
 
-  return Student.findAll({ where: whereCondition, raw: true });
+  return Student.findAll({ where: whereCondition, order: [['firstName', 'ASC']], raw: true });
 };
 
 export { getAllStudents };
